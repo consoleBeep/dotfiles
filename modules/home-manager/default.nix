@@ -6,16 +6,7 @@
   imports = [
     ./desktop
     ./terminal
-    ./dconf.nix
-    ./qemu.nix
-    ./rust.nix
   ];
-
-  gpg = {
-    enable = true;
-
-    keyTrustMap."0x0FE5A355DBC92568-2024-08-09.asc" = "ultimate";
-  };
 
   home = {
     inherit (userInfo) username;
@@ -25,26 +16,18 @@
       man-pages
       man-pages-posix
       qbittorrent
-      gitui
       wget
-      go
       jq
-      manix
-      tlrc
       teams-for-linux
       bitwarden
-      pika-backup
       mpv
-      cabal-install
       mit
       calculator
       copy-file
-      todo
       libreoffice-fresh
-      airtame
     ];
 
-    stateVersion = "24.05";
+    stateVersion = "24.11";
   };
 
   programs = {

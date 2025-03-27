@@ -22,7 +22,7 @@ This is a repository for my NixOS configuration.
    2. Clone the Git repository.
 
       ```sh
-      git clone https://github.com/BastianAsmussen/dotfiles.git ~/dotfiles
+      git clone https://github.com/consoleBeep/dotfiles.git ~/dotfiles
       cd ~/dotfiles
       ```
 
@@ -35,7 +35,7 @@ This is a repository for my NixOS configuration.
    4. Or, as a one-liner.
 
       ```sh
-      nix-shell -p git --run "git clone https://github.com/BastianAsmussen/dotfiles.git ~/dotfiles && cd ~/dotfiles && nix-shell"
+      nix-shell -p git --run "git clone https://github.com/consoleBeep/dotfiles.git ~/dotfiles && cd ~/dotfiles && nix-shell"
       ```
 
 2. Choose a host.

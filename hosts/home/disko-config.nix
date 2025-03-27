@@ -23,7 +23,7 @@
             };
 
             luks = {
-              size = "100%";
+              size = "80%";
               content = {
                 type = "luks";
                 name = "luks_lvm";
@@ -36,6 +36,24 @@
                   type = "lvm_pv";
                   vg = "nix";
                 };
+              };
+            };
+          };
+        };
+      };
+
+      hdd = {
+        type = "disk";
+        device = "/dev/sda";
+        content = {
+          type = "gpt";
+          partitions = {
+            data = {
+              size = "80%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/data";
               };
             };
           };

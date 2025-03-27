@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
@@ -50,14 +49,6 @@
 
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-
-        # Extra completions.
-        source <(${lib.getExe pkgs.todo} completion zsh)
-
-        # Automatic tmux session through SSH.
-        if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
-          ${lib.getExe pkgs.tmux} new -As ssh
-        fi
       '';
 
     shellAliases = {
@@ -88,14 +79,8 @@
         "command-not-found"
         "docker"
         "docker-compose"
-        "dotnet"
         "eza"
         "git"
-        "golang"
-        "kubectl"
-        "kubectx"
-        "pass"
-        "rust"
         "sudo"
       ];
     };

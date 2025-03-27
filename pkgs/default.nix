@@ -11,5 +11,4 @@
   mit = pkgs.callPackage ./mit {};
   calculator = pkgs.callPackage ./calculator.nix {};
   copy-file = pkgs.callPackage ./copy-file.nix {};
-  todo = pkgs.callPackage ./todo.nix {};
 }

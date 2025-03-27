@@ -8,10 +8,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     stylix.url = "github:danth/stylix";
-    hyprland.url = "github:hyprwm/Hyprland";
-    ags.url = "github:Aylur/ags/v1";
     nixcord.url = "github:kaylorben/nixcord";
-    schizofox.url = "github:schizofox/schizofox";
 
     disko = {
       url = "github:nix-community/disko";
@@ -30,11 +27,6 @@
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -63,24 +55,17 @@
           pkgs = import nixpkgs {inherit system;};
         });
 
-    lib = nixpkgs.lib.extend (final: _prev: {
-      custom = import ./lib final;
-    });
-
     userInfo = {
-      username = "bastian";
-      email = "bastian@asmussen.tech";
-      fullName = "Bastian Asmussen";
+      username = "casper";
+      email = "casperamadsen@gmail.com";
+      fullName = "Casper Agerskov Madsen";
       icon = ./assets/icons/bastian.png;
     };
   in {
-    overlays = import ./overlays {inherit inputs lib;};
+    overlays = import ./overlays {inherit inputs;};
     formatter = forAllSystems ({pkgs}: pkgs.alejandra);
     packages = forAllSystems ({pkgs}: import ./pkgs {inherit pkgs;});
     templates = import ./templates;
-    checks = forAllSystems ({pkgs}: {
-      library = pkgs.callPackage ./tests {inherit pkgs lib;};
-    });
 
     devShells = forAllSystems ({pkgs}: {
       default = import ./shell.nix {inherit pkgs;};
@@ -89,7 +74,7 @@
     nixosConfigurations = listToAttrs (map (hostname: {
         name = hostname;
         value = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs userInfo lib self;};
+          specialArgs = {inherit inputs outputs userInfo self;};
           modules = [
             ./hosts/${hostname}/configuration.nix
             ./modules/nixos

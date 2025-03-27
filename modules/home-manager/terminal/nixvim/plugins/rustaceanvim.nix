@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-}: {
+pkgs: {
   enable = true;
 
   settings = {
@@ -12,7 +8,6 @@
         cargo.features = "all";
         check = {
           command = "clippy";
-          extraArgs = ["--"] ++ (lib.strings.splitString " " config.home.sessionVariables.RUSTFLAGS);
           allTargets = true;
         };
 

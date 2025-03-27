@@ -1,7 +1,6 @@
 {lib, ...}: {
   imports = [
     ./docker.nix
-    ./kubernetes.nix
     ./qemu.nix
   ];
 

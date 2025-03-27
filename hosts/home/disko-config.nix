@@ -13,7 +13,7 @@
             };
 
             ESP = {
-              size = "4G";
+              size = "18G";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -29,7 +29,7 @@
                 name = "luks_lvm";
                 settings = {
                   allowDiscards = true;
-                  crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];
+                  crypttabExtraOpts = ["token-timeout=10"];
                 };
 
                 content = {

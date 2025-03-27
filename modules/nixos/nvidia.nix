@@ -40,7 +40,7 @@ in {
 
     environment.variables = {
       # Required to run the correct GBM backend for NVIDIA GPUs on Wayland.
-      GBM_BACKEND = mkIf config.desktop.greeter.useWayland "nvidia-drm";
+      GBM_BACKEND = "nvidia-drm";
       # Apparently, without this nouveau may attempt to be used instead.
       # (despite it being blacklisted)
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";

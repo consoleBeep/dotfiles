@@ -6,22 +6,17 @@
   inherit (lib) mkDefault;
 in {
   imports = [
-    ./crypto
     ./desktop
     ./nix
-    ./security
     ./virtualisation
-    ./bluetooth.nix
     ./bootloader.nix
     ./btrfs.nix
     ./gaming.nix
-    ./goxlr.nix
     ./home-manager.nix
     ./language.nix
     ./misc.nix
     ./network-manager.nix
     ./nvidia.nix
-    ./stylix.nix
     ./user.nix
   ];
 
@@ -33,6 +28,6 @@ in {
 
   system = {
     configurationRevision = self.shortRev or self.dirtyShortRev;
-    stateVersion = mkDefault "24.05";
+    stateVersion = mkDefault "24.11";
   };
 }

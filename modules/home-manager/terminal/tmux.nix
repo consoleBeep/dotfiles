@@ -2,31 +2,13 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) getExe;
-
-  tmux = getExe pkgs.tmux;
-  tms = getExe pkgs.tmux-sessionizer;
-
-  sessionPopup = pkgs.writeShellScriptBin "sessions" ''
-    raw_width=$(${tmux} display-message -p '#{window_width}')
-    raw_height=$(${tmux} display-message -p '#{window_height}')
-
-    popup_width=$((raw_width > 100 ? 100 : raw_width * 80 / 100))
-    popup_height=$((raw_height > 50 ? 50 : raw_height * 80 / 100))
-
-    ${tmux} display-popup -E -h $popup_height -w $popup_width -T 'Choose Project' '${tms}'
-  '';
-in {
-  imports = [
-    ./tmux-sessionizer.nix
-  ];
-
+}: {
   stylix.targets.tmux.enable = false;
+
   programs.tmux = {
     enable = true;
 
-    shell = getExe pkgs.zsh;
+    shell = lib.getExe pkgs.zsh;
     terminal = "screen-256color"; # Fix terminal colors.
     keyMode = "vi";
 
@@ -90,11 +72,6 @@ in {
       bind -r C-Down resize-pane -D
       bind -r C-Left resize-pane -L
       bind -r C-Right resize-pane -R
-
-      # Sessionizer.
-      bind s display-popup -E -h 60% -w 85% -T 'Active Sessions' "${tms} switch"
-      bind w display-popup -E -h 60% -w 85% -T 'Session Windows' "${tms} windows"
-      bind f run-shell "${getExe sessionPopup}"
 
       # Detach from current session.
       bind C-d detach-client
